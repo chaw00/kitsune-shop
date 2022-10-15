@@ -42,7 +42,11 @@ export default function Home({ products }) {
       <Main>
         <Title>
           Welcome to{" "}
-          <a href="https://www.facebook.com/kitauneminomato" target={"_blank"}>
+          <a
+            href="https://www.facebook.com/kitauneminomato"
+            target={"_blank"}
+            rel="noreferrer"
+          >
             Kitsune Shop!
           </a>
         </Title>
@@ -50,7 +54,7 @@ export default function Home({ products }) {
         <Description>Pick Your Guilty Pleasure</Description>
         <StlyedUL>
           {products.map((product) => (
-            <li>
+            <li key={product.slug}>
               <Card product={product}></Card>
             </li>
           ))}

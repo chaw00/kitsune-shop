@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import { PRODUCTS } from "../lib/api";
 
 const CardContainer = styled.section`
   background-color: #c6e2e9;
@@ -32,20 +33,19 @@ const CardWrapper = styled.button`
 `;
 
 export default function Card({ product }) {
+  const handleRouteChange = () => {};
   return (
     <CardContainer>
       <CardWrapper>
         <Image
+          alt={product.title}
           src={product.featuredImage.url}
           height={"100%"}
           width={"100%"}
           layout="responsive"
         ></Image>
         <div>
-          <h4>
-            <b>Chocolates</b>
-          </h4>
-          <p>Limited Edition</p>
+          <h4>{product.title}</h4>
         </div>
       </CardWrapper>
     </CardContainer>
