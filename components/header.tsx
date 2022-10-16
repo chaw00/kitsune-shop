@@ -29,7 +29,7 @@ export default function Header() {
       <Link href={"/"}>
         <Logo>
           <Image
-            alt={"kitsune shop"}
+            alt={"Kitsune Shop"}
             src={"/kit.jpg"}
             height={50}
             width={70}
