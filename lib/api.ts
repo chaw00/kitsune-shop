@@ -3,7 +3,9 @@ export const PRODUCTS = `
     sampleProductsCollection {
       items {
         title
+        amount
         slug
+        description
         featuredImage {
           url
         }
@@ -23,6 +25,7 @@ export const PRODUCT = (slug) => `query {
       }
       slug
       amount
+      description
     }
   }
 }`;

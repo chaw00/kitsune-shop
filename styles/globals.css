@@ -20,7 +20,8 @@ a {
   }
   body {
     color: black;
-    background: white;
-    
+    background:#F1C656;
+    padding: 0;
+    margin: 0;
   }
 }
