@@ -1,11 +1,17 @@
 import { fetchGraphQL, PRODUCT, PRODUCTS } from "../../lib/api";
 import Image from "next/image";
 import styled from "styled-components";
+import Head from "next/head";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { richContentOptions } from "../../components/richContent";
 
 const Container = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const ImageContainer = styled.figure`
@@ -24,7 +30,10 @@ const Info = styled.div`
   font-size: 40px;
   font-weight: 300;
   color: #560903;
-  text-align: left;
+  text-align: center;
+  @media (min-width: 1024px) {
+    text-align: left;
+  }
 `;
 
 const Description = styled.p`
@@ -36,9 +45,13 @@ const Description = styled.p`
   background-color: #560903;
   color: #f7ff93;
 `;
+
 export default function Product({ product }) {
   return (
     <>
+      <Head>
+        <title>Product</title>
+      </Head>
       <Container>
         <ImageContainer>
           <Image
@@ -46,6 +59,7 @@ export default function Product({ product }) {
             src={product.featuredImage.url}
             layout="fill"
             objectFit="contain"
+            border-radius="30px"
           ></Image>
         </ImageContainer>
         <Info>
@@ -53,7 +67,14 @@ export default function Product({ product }) {
           <p>Buy this for {product.amount}php</p>
         </Info>
       </Container>
-      <Description>{product.description}</Description>
+      <Description>
+        <h4>Product Details:</h4>
+
+        {documentToReactComponents(
+          product.details.json,
+          richContentOptions(product.details.links) as any
+        )}
+      </Description>
     </>
   );
 }
@@ -81,6 +102,7 @@ export async function getStaticProps({ params }) {
       props: {
         product: products.data.sampleProductsCollection.items[0],
       },
+      revalidate: 10,
     };
   } catch (e) {
     console.log("ERRR", e);

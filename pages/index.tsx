@@ -1,72 +1,25 @@
 import Head from "next/head";
-import Image from "next/image";
-import { fetchGraphQL, PRODUCTS } from "../lib/api";
-import styles from "../styles/Home.module.css";
-import Card from "../components/card";
-import Header from "../components/header";
-import styled from "styled-components";
+import { BANNER, fetchGraphQL, PRODUCTS } from "../lib/api";
+import Banner from "../components/banner";
 
-import {
-  Container,
-  Main,
-  Title,
-  Description,
-  CodeTag,
-} from "../components/styles";
-
-const StlyedUL = styled.ul`
-  display: grid;
-  max-width: 1300px;
-  grid-template-columns: repeat(1, minmax(150px, 500px));
-  grid-gap: 10px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  list-style: none;
-
-  > li {
-    display: flex;
-    min-width: 200px;
-    justify-content: center;
-  }
-  @media (min-width: 600px) {
-    grid-template-columns: repeat(2, minmax(150px, 500px));
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, minmax(150px, 500px));
-  }
-`;
-export default function Home({ products }) {
+export default function Home({ banner }) {
   return (
     <>
       <Head>
-        <title>Product List</title>
+        <title>Home</title>
       </Head>
-      <Container>
-        <Main>
-          <Description>Pick Your Guilty Pleasure</Description>
-          <StlyedUL>
-            {products.map((product) => (
-              <li key={product.slug}>
-                <Card product={product}></Card>
-              </li>
-            ))}
-          </StlyedUL>
-        </Main>
-      </Container>
+      <Banner banner={banner}></Banner>
     </>
   );
 }
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
   try {
-    const products = await fetchGraphQL(PRODUCTS);
-    console.log(products);
+    const banner = await fetchGraphQL(BANNER);
+    console.log(BANNER);
     return {
       props: {
-        products: products.data.sampleProductsCollection.items,
+        banner: banner.data.bannerCollection.items[0],
       },
     };
   } catch (e) {

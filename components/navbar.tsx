@@ -1,7 +1,5 @@
 import Link from "next/link";
-import Head from "next/head";
 import styled from "styled-components";
-import Image from "next/image";
 
 const Mobilecontainer = styled.button`
   width: 20px;
@@ -37,18 +35,22 @@ const NavWrapper = styled.nav`
   justify-content: center;
   align-items: center;
 `;
-export default function Nav() {
+
+export default function Nav(props) {
   return (
     <NavWrapper>
       <Navigation>
+        <Link href="/">
+          <h3>Home</h3>
+        </Link>
+        <Link href="/products">
+          <h3>Products</h3>
+        </Link>
         <Link href="/about">
           <h3>About</h3>
         </Link>
-        <Link href="/">
-          <h3>Product List</h3>
-        </Link>
       </Navigation>
-      <Mobilecontainer>
+      <Mobilecontainer onClick={props.toggle}>
         <HamburgerLine />
         <HamburgerLine />
         <HamburgerLine />

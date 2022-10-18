@@ -9,15 +9,17 @@ export const PRODUCTS = `
         featuredImage {
           url
         }
+        }
       }
     }
-  }
 `;
 
 export const PRODUCT = (slug) => `query {
   sampleProductsCollection(where: {
     slug: "${slug}"
-  }){
+  }
+  limit: 1
+  ){
     items{
      title
       featuredImage{
@@ -25,11 +27,67 @@ export const PRODUCT = (slug) => `query {
       }
       slug
       amount
-      description
+      details{
+        json
+        links {
+                    assets {
+                      block {
+                        sys {
+                          id
+                        }
+                        title
+                        url
+                        contentType
+                        height
+                        width
+                      }
+                      hyperlink {
+                        sys {
+                          id
+                        }
+                        title
+                        url
+                        contentType
+                        height
+                        width
+                      }
+                    }
+                    entries {
+                      inline {
+                        sys {
+                          id
+                        }
+            
+                      }
+                      hyperlink {
+                        sys {
+                          id
+                        }
+                      }
+                      block {
+                        sys {
+                          id
+                        }
+              
+                      }
+                    }
+                  }
+      }
     }
   }
 }`;
-
+export const BANNER = `
+query {
+  bannerCollection{
+    items{
+      bannerTitle
+      featuredBanner{
+        url
+      }
+    }
+  }
+  # add your query
+}`;
 export async function fetchGraphQL(query, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,

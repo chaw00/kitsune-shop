@@ -15,6 +15,7 @@ const Headercontainer = styled.header`
   justify-content: space-between;
   width: 100%;
   background-color: black;
+  opacity: 0.8;
   color: white;
   padding: 0 20px;
   margin: 0;
@@ -23,7 +24,7 @@ const Headercontainer = styled.header`
   z-index: 1;
 `;
 
-export default function Header() {
+export default function Header(props) {
   return (
     <Headercontainer>
       <Link href={"/"}>
@@ -37,7 +38,7 @@ export default function Header() {
           <h2>Kitsune Shop</h2>
         </Logo>
       </Link>
-      <Navigation></Navigation>
+      <Navigation toggle={props.toggle}></Navigation>
     </Headercontainer>
   );
 }

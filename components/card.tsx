@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Link from "next/link";
 import Image from "next/image";
-import { PRODUCTS } from "../lib/api";
 import { useRouter } from "next/router";
 
 const CardWrapper = styled.button`
