@@ -27,9 +27,9 @@ const ImageContainer = styled.figure`
 `;
 
 const Info = styled.div`
-  font-size: 40px;
-  font-weight: 300;
-  color: #560903;
+  font-size: 35px;
+  font-weight: 500;
+  color: black;
   text-align: center;
   @media (min-width: 1024px) {
     text-align: left;
@@ -42,8 +42,7 @@ const Description = styled.p`
   text-align: left;
   padding: 2rem;
   margin: 5px 5px 10px 5px;
-  background-color: #560903;
-  color: #f7ff93;
+  background-color: #508ebf;
 `;
 
 export default function Product({ product }) {
@@ -63,7 +62,7 @@ export default function Product({ product }) {
           ></Image>
         </ImageContainer>
         <Info>
-          <h1>{product.title}</h1>
+          <h2>{product.title}</h2>
           <p>Buy this for {product.amount}php</p>
         </Info>
       </Container>

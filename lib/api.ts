@@ -88,6 +88,26 @@ query {
   }
   # add your query
 }`;
+
+export const ABOUT = `
+query {
+  aboutMeCollection{
+    items{
+      aboutMe{
+        json
+      }
+      profileImage{
+        url
+      }
+      techStackCollection{
+        items{
+          url
+        }
+      }
+        }
+      }
+    }
+`;
 export async function fetchGraphQL(query, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,

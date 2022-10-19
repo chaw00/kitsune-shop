@@ -14,9 +14,8 @@ const Headercontainer = styled.header`
   cursor: pointer;
   justify-content: space-between;
   width: 100%;
-  background-color: black;
+  background-color: #dc97a5;
   opacity: 0.8;
-  color: white;
   padding: 0 20px;
   margin: 0;
   position: sticky;

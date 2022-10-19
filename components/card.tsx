@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 
 const CardWrapper = styled.button`
   height: 400px;
-  background-color: #560903;
+  background-color: #508ebf;
   font-size: 20px;
   font-weight: 200;
   width: 80%;
   padding: 5px 16px;
   align-items: center;
-  color: #f7ff93;
+  color: black;
   text-align: center;
   position: relative;
   border: 5px solid white;

@@ -12,6 +12,10 @@ const Mobilecontainer = styled.button`
   justify-content: center;
   align-items: center;
   display: flex;
+  &:hover {
+    background-color: green;
+  }
+
   @media (min-width: 1024px) {
     display: none;
   }
@@ -46,7 +50,7 @@ export default function Nav(props) {
         <Link href="/products">
           <h3>Products</h3>
         </Link>
-        <Link href="/about">
+        <Link href="/aboutme">
           <h3>About</h3>
         </Link>
       </Navigation>
