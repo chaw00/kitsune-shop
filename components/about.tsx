@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { ABOUT, fetchGraphQL } from "../lib/api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richContentOptions } from "./richContent";
+import { AboutMe } from "../types/graphql";
 
 const ImageBox = styled.figure`
   position: relative;
@@ -16,7 +16,7 @@ const InfoBox = styled.div`
   text-align: left;
   padding: 20px;
 `;
-const StlyedUL = styled.ul`
+const Container = styled.section`
   display: grid;
   max-width: 1300px;
   grid-template-columns: repeat(1, minmax(150px, 500px));
@@ -25,8 +25,6 @@ const StlyedUL = styled.ul`
   margin: 10px;
   justify-content: center;
   align-items: center;
-  width: 100%;
-
   > li {
     display: flex;
     min-width: 200px;
@@ -36,9 +34,9 @@ const StlyedUL = styled.ul`
     grid-template-columns: repeat(2, minmax(150px, 500px));
   }
 `;
-export default function About({ about }) {
+export default function About({ about }: { about: AboutMe }) {
   return (
-    <StlyedUL>
+    <Container>
       <ImageBox>
         <Image
           alt="Avatar"
@@ -53,18 +51,6 @@ export default function About({ about }) {
           richContentOptions(about.aboutMe.links) as any
         )}
       </InfoBox>
-    </StlyedUL>
+    </Container>
   );
-}
-export async function getStaticPaths() {
-  const about = await fetchGraphQL(ABOUT);
-
-  return {
-    paths: about.data.aboutMeCollection.items.map((about) => ({
-      params: {
-        product: about.slug,
-      },
-    })),
-    fallback: "blocking",
-  };
 }

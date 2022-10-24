@@ -7,6 +7,9 @@ const Logo = styled.a`
   display: flex;
   gap: 20px;
   cursor: pointer;
+  img {
+    border-radius: 50%;
+  }
 `;
 
 const Headercontainer = styled.header`
@@ -16,14 +19,14 @@ const Headercontainer = styled.header`
   width: 100%;
   background-color: #dc97a5;
   opacity: 0.8;
-  padding: 0 20px;
+  padding: 0;
   margin: 0;
   position: sticky;
   top: 0;
   z-index: 1;
 `;
 
-export default function Header(props) {
+export default function Header(header) {
   return (
     <Headercontainer>
       <Link href={"/"}>
@@ -37,7 +40,7 @@ export default function Header(props) {
           <h2>Kitsune Shop</h2>
         </Logo>
       </Link>
-      <Navigation toggle={props.toggle}></Navigation>
+      <Navigation toggle={header.toggle}></Navigation>
     </Headercontainer>
   );
 }

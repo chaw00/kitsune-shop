@@ -1,4 +1,6 @@
-export const PRODUCTS = `
+import { gql } from "@apollo/client";
+
+export const PRODUCTS = gql`
   query {
     sampleProductsCollection {
       items {
@@ -9,12 +11,12 @@ export const PRODUCTS = `
         featuredImage {
           url
         }
-        }
       }
     }
+  }
 `;
 
-export const PRODUCT = (slug) => `query {
+export const PRODUCT = (slug) => gql`query {
   sampleProductsCollection(where: {
     slug: "${slug}"
   }
@@ -76,52 +78,54 @@ export const PRODUCT = (slug) => `query {
     }
   }
 }`;
-export const BANNER = `
-query {
-  bannerCollection{
-    items{
-      bannerTitle
-      featuredBanner{
-        url
-      }
-    }
-  }
-  # add your query
-}`;
-
-export const ABOUT = `
-query {
-  aboutMeCollection{
-    items{
-      aboutMe{
-        json
-      }
-      profileImage{
-        url
-      }
-      techStackCollection{
-        items{
+export const BANNER = gql`
+  query {
+    bannerCollection {
+      items {
+        bannerTitle
+        featuredBanner {
           url
         }
       }
+    }
+    # add your query
+  }
+`;
+
+export const ABOUT = gql`
+  query {
+    aboutMeCollection {
+      items {
+        aboutMe {
+          json
+        }
+        profileImage {
+          url
+        }
+        techStackCollection {
+          items {
+            url
+          }
         }
       }
     }
+  }
 `;
-export async function fetchGraphQL(query, preview = false) {
-  return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          preview
-            ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
-            : process.env.CONTENTFUL_ACCESS_TOKEN
-        }`,
-      },
-      body: JSON.stringify({ query }),
+
+export const SOCIAL = gql`
+  query {
+    footerLinksCollection(limit: 1) {
+      items {
+        footerLinksCollection {
+          items {
+            socialMediaUrl
+            socialMediaAlt
+            socialMediaImage {
+              url
+            }
+          }
+        }
+      }
     }
-  ).then((response) => response.json());
-}
+  }
+`;

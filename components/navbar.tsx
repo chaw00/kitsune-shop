@@ -2,11 +2,11 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const Mobilecontainer = styled.button`
-  width: 20px;
-  margin: 0;
+  width: 30px;
+  height: 40px;
+  background-color: inherit;
+  border: 0;
   padding: 0;
-  height: 20px;
-  background-color: black;
   gap: 2px;
   flex-direction: column;
   justify-content: center;
@@ -29,18 +29,19 @@ const Navigation = styled.nav`
 `;
 
 const HamburgerLine = styled.div`
-  height: 2px;
+  height: 3px;
   background-color: white;
-  width: 15px;
+  width: 20px;
 `;
 
 const NavWrapper = styled.nav`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 2px 20px 0;
 `;
 
-export default function Nav(props) {
+export default function Nav(nav) {
   return (
     <NavWrapper>
       <Navigation>
@@ -54,11 +55,10 @@ export default function Nav(props) {
           <h3>About</h3>
         </Link>
       </Navigation>
-      <Mobilecontainer onClick={props.toggle}>
+      <Mobilecontainer onClick={nav.toggle}>
         <HamburgerLine />
         <HamburgerLine />
         <HamburgerLine />
-        {/* <Image src={"/Icon.jpg"} height={20} width={20}></Image> */}
       </Mobilecontainer>
     </NavWrapper>
   );

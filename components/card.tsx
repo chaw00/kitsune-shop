@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { SampleProducts } from "../types/graphql";
 
 const CardWrapper = styled.button`
   height: 400px;
@@ -26,7 +27,7 @@ const CardWrapper = styled.button`
   }
 `;
 
-export default function Card({ product }) {
+export default function Card({ product }: { product: SampleProducts }) {
   const router = useRouter();
   const handleRouteChange = () => {
     router.push(`/product/${product.slug}`);
@@ -47,11 +48,3 @@ export default function Card({ product }) {
     </CardWrapper>
   );
 }
-
-// {
-//     "title": "Kitkat Chocomint",
-//     "slug": "kitkat-chocomint",
-//     "featuredImage": {
-//         "url": "https://images.ctfassets.net/ldcdkc14ex30/2OrJMn7fxJAnfMF5xwafM8/698b4f9e295073506231ed819eac6344/309648753_1258675814934840_1196438583186010872_n.jpg"
-//     }
-// }

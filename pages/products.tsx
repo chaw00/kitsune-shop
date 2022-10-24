@@ -10,6 +10,8 @@ import {
   Description,
   CodeTag,
 } from "../components/styles";
+import client from "../services/apollo-client";
+import { SampleProducts } from "../types/graphql";
 
 const StlyedUL = styled.ul`
   display: grid;
@@ -35,7 +37,7 @@ const StlyedUL = styled.ul`
     grid-template-columns: repeat(4, minmax(150px, 500px));
   }
 `;
-export default function Products({ products }) {
+export default function Products({ products }: { products: SampleProducts[] }) {
   return (
     <>
       <Head>
@@ -59,15 +61,17 @@ export default function Products({ products }) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
   try {
-    const products = await fetchGraphQL(PRODUCTS);
-    console.log(products);
+    const products = await client.query({
+      query: PRODUCTS,
+    });
+
     return {
       props: {
         products: products.data.sampleProductsCollection.items,
       },
+      revalidate: 10,
     };
   } catch (e) {
-    console.log("ERRR", e);
     return {
       notFound: true,
     };

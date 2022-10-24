@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { Banner as BannerType } from "../types/graphql";
 
 const ImageContainer = styled.figure`
   position: relative;
@@ -9,13 +10,15 @@ const ImageContainer = styled.figure`
   justify-content: center;
   padding: 0;
   margin: 0;
+  margin-bottom: 30px;
   align-items: baseline;
   > figcaption {
     z-index: 1;
   }
 `;
 
-export default function Banner({ banner }) {
+export default function Banner({ banner }: { banner: BannerType }) {
+  const { url } = banner.featuredBanner;
   return (
     <>
       <figcaption>
@@ -24,7 +27,7 @@ export default function Banner({ banner }) {
       <ImageContainer>
         <Image
           alt={banner.bannerTitle}
-          src={banner.featuredBanner.url}
+          src={url}
           layout="fill"
           objectFit="cover"
         ></Image>

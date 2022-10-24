@@ -1,6 +1,7 @@
 import Head from "next/head";
-import { BANNER, fetchGraphQL, PRODUCTS } from "../lib/api";
+import { BANNER } from "../lib/api";
 import Banner from "../components/banner";
+import client from "../services/apollo-client";
 
 export default function Home({ banner }) {
   return (
@@ -15,15 +16,16 @@ export default function Home({ banner }) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
   try {
-    const banner = await fetchGraphQL(BANNER);
-    console.log(BANNER);
+    const banner = await client.query({
+      query: BANNER,
+    });
     return {
       props: {
         banner: banner.data.bannerCollection.items[0],
       },
+      revalidate: 10,
     };
   } catch (e) {
-    console.log("ERRR", e);
     return {
       notFound: true,
     };

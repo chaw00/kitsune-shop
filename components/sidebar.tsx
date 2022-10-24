@@ -9,10 +9,9 @@ const SideContainer = styled.div`
   right: 0;
   z-index: 2;
   display: flex;
-  background-color: grey;
+  background-color: white;
   flex-direction: column;
   bottom: 0;
-  opacity: 4;
   justify-content: columns;
   cursor: pointer;
   @media (min-width: 900px) {
@@ -22,15 +21,22 @@ const SideContainer = styled.div`
     display: none;
   }
 `;
-export default function SideBar(props) {
-  const { isOpen } = props;
+
+const SideBarFooter = styled.div`
+  display: block;
+`;
+
+export default function SideBar(sidebar) {
+  const { isOpen } = sidebar;
   if (!isOpen) {
     return null;
   }
+
   return (
     <SideContainer>
       <>
-        <button onClick={props.toggle}>X</button>
+        <button onClick={sidebar.toggle}>X</button>
+        <h3>Menu</h3>
         <nav>
           <Link href="/">
             <h3>Home</h3>
@@ -44,6 +50,7 @@ export default function SideBar(props) {
           </Link>
         </nav>
       </>
+      <SideBarFooter></SideBarFooter>
     </SideContainer>
   );
 }

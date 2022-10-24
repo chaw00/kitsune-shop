@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Head from "next/head";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richContentOptions } from "../../components/richContent";
+import client from "../../services/apollo-client";
 
 const Container = styled.div`
   display: grid;
@@ -43,6 +44,9 @@ const Description = styled.p`
   padding: 2rem;
   margin: 5px 5px 10px 5px;
   background-color: #508ebf;
+  @media (min-width: 1024px) {
+    text-align: center;
+  }
 `;
 
 export default function Product({ product }) {
@@ -79,7 +83,9 @@ export default function Product({ product }) {
 }
 
 export async function getStaticPaths() {
-  const products = await fetchGraphQL(PRODUCTS);
+  const products = await client.query({
+    query: PRODUCTS,
+  });
 
   return {
     paths: products.data.sampleProductsCollection.items.map((product) => ({
@@ -92,10 +98,11 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const { product } = params;
-  console.log(PRODUCT(product));
   // Call an external API endpoint to get posts
   try {
-    const products = await fetchGraphQL(PRODUCT(product));
+    const products = await client.query({
+      query: PRODUCT(product),
+    });
 
     return {
       props: {
@@ -104,7 +111,6 @@ export async function getStaticProps({ params }) {
       revalidate: 10,
     };
   } catch (e) {
-    console.log("ERRR", e);
     return {
       notFound: true,
     };
