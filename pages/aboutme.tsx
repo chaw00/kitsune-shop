@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { ABOUT, fetchGraphQL } from "../lib/api";
+import { ABOUT } from "../lib/api";
 import About from "../components/about";
 import TechStack from "../components/swiper";
 import client from "../services/apollo-client";
