@@ -1,4 +1,4 @@
-import { fetchGraphQL, PRODUCT, PRODUCTS } from "../../lib/api";
+import { PRODUCT, PRODUCTS } from "../../lib/api";
 import Image from "next/image";
 import styled from "styled-components";
 import Head from "next/head";

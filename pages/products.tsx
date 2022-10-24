@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { fetchGraphQL, PRODUCTS } from "../lib/api";
+import { PRODUCTS } from "../lib/api";
 import Card from "../components/card";
 import styled from "styled-components";
 
