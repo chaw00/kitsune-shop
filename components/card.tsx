@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { SampleProducts } from "../types/graphql";
 
 const CardWrapper = styled.button`
-  height: 400px;
+  height: 420px;
   background-color: #508ebf;
   font-size: 20px;
   font-weight: 200;
@@ -17,13 +17,17 @@ const CardWrapper = styled.button`
   border: 5px solid white;
   border-radius: 30px;
   margin: 20px;
-  padding: 20px;
+  padding: 15px;
   line-height: 30px;
+  font-family: cursive;
   cursor: pointer;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.5s;
   &:hover {
     transform: translate(-20px, -9px);
+  }
+  > figcaption {
+    font-weight: bold;
   }
 `;
 
@@ -41,10 +45,8 @@ export default function Card({ product }: { product: SampleProducts }) {
         width={"100%"}
         layout="responsive"
       ></Image>
-      <div>
-        <h4>{product.title}</h4>
-        <h5>{product.amount}</h5>
-      </div>
+      <figcaption>{product.title}</figcaption>
+      <p> &#8369;&nbsp;{product.amount}</p>
     </CardWrapper>
   );
 }

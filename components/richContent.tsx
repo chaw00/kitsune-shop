@@ -56,7 +56,7 @@ const BlockQuote = styled.blockquote`
   font-size: 16px;
   font-weight: normal;
 `;
-export const richContentOptions = (links) => {
+export const richContentOptions = (link) => {
   return {
     renderNode: {
       [BLOCKS.HEADING_1]: (_node: ReactNode, children: ReactNode) => {

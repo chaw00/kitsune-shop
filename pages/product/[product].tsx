@@ -5,6 +5,7 @@ import Head from "next/head";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richContentOptions } from "../../components/richContent";
 import client from "../../services/apollo-client";
+import { SampleProducts } from "../../types/graphql";
 
 const Container = styled.div`
   display: grid;
@@ -13,25 +14,34 @@ const Container = styled.div`
   @media (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
+  font-family: cursive;
 `;
 
 const ImageContainer = styled.figure`
   position: relative;
-  width: 100%;
-  height: 400px;
+  width: 80%;
+  height: 200px;
   transition: transform 0.2s;
-  padding: 50px;
+  padding: 20px;
   img {
     height: auto;
     object-fit: contain;
   }
+  @media (min-width: 1024px) {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    transition: transform 0.2s;
+    padding: 20px;
+  }
 `;
 
 const Info = styled.div`
-  font-size: 35px;
+  font-size: 25px;
   font-weight: 500;
   color: black;
   text-align: center;
+  padding: 10px;
   @media (min-width: 1024px) {
     text-align: left;
   }
@@ -44,12 +54,13 @@ const Description = styled.p`
   padding: 2rem;
   margin: 5px 5px 10px 5px;
   background-color: #508ebf;
+  text-align: center;
   @media (min-width: 1024px) {
-    text-align: center;
+    text-align: left;
   }
 `;
 
-export default function Product({ product }) {
+export default function Product({ product }: { product: SampleProducts }) {
   return (
     <>
       <Head>
@@ -62,12 +73,11 @@ export default function Product({ product }) {
             src={product.featuredImage.url}
             layout="fill"
             objectFit="contain"
-            border-radius="30px"
           ></Image>
         </ImageContainer>
         <Info>
           <h2>{product.title}</h2>
-          <p>Buy this for {product.amount}php</p>
+          <p>Buy this for &#8369;&nbsp;{product.amount}</p>
         </Info>
       </Container>
       <Description>

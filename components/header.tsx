@@ -24,6 +24,8 @@ const Headercontainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 1;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 `;
 
 export default function Header(header) {

@@ -86,9 +86,13 @@ export const BANNER = gql`
         featuredBanner {
           url
         }
+        bannerImageCollection {
+          items {
+            url
+          }
+        }
       }
     }
-    # add your query
   }
 `;
 

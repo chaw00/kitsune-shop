@@ -12,18 +12,27 @@ const ImageContainer = styled.figure`
   margin: 0;
   margin-bottom: 30px;
   align-items: baseline;
-  > figcaption {
-    z-index: 1;
-  }
+  /* > figcaption {
+    /* z-index: 1; */
+  /* display: flex;
+    width: 100%;
+    justify-content: center;
+  } */
+`;
+
+const BannerTitle = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
 `;
 
 export default function Banner({ banner }: { banner: BannerType }) {
   const { url } = banner.featuredBanner;
   return (
     <>
-      <figcaption>
+      <BannerTitle>
         <h2>{banner.bannerTitle}</h2>
-      </figcaption>
+      </BannerTitle>
       <ImageContainer>
         <Image
           alt={banner.bannerTitle}

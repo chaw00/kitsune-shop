@@ -13,7 +13,7 @@ const Mobilecontainer = styled.button`
   align-items: center;
   display: flex;
   &:hover {
-    background-color: green;
+    background-color: #ccdbea;
   }
 
   @media (min-width: 1024px) {
@@ -36,7 +36,7 @@ const HamburgerLine = styled.div`
 
 const NavWrapper = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 2px 20px 0;
 `;
